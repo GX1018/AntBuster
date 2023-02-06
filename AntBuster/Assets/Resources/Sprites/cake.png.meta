@@ -113,6 +113,30 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -159,7 +183,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cake_2
+      name: cake_5
       rect:
         serializedVersion: 2
         x: 181
@@ -180,7 +204,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cake_3
+      name: cake_4
       rect:
         serializedVersion: 2
         x: 29
@@ -201,7 +225,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cake_4
+      name: cake_3
       rect:
         serializedVersion: 2
         x: 88
@@ -222,7 +246,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cake_5
+      name: cake_2
       rect:
         serializedVersion: 2
         x: 150
@@ -284,6 +308,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: cake_0
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f79a534e993dcf94d84a7d7aa600aaa6
+      internalID: -1298592567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -296,13 +341,14 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       cake_1: 1029225882
+      cake_0: -1298592567
       cake_8: 484250754
       cake_7: 919458467
-      cake_5: 314654700
-      cake_3: -512965413
+      cake_5: 183047497
+      cake_3: 648610864
       cake_6: -482584613
-      cake_4: 648610864
-      cake_2: 183047497
+      cake_4: -512965413
+      cake_2: 314654700
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
