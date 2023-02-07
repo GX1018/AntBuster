@@ -24,8 +24,8 @@ public class Cake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(sprites[pieceOfCake]);
-        Debug.Log(pieceOfCake);
+        //Debug.Log(sprites[pieceOfCake]);
+        //Debug.Log(pieceOfCake);
         curruntImage.sprite = sprites[pieceOfCake];
 
     }

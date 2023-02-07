@@ -278,6 +278,7 @@ MonoBehaviour:
   currentHp: 0
   hpBar: {fileID: 0}
   hpGauge: {fileID: 0}
+  RandomMoveTime: 0
   timeAfterStart: 0
 --- !u!58 &-9013030135929731449
 CircleCollider2D:

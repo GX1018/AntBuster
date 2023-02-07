@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Ant : MonoBehaviour
 {
     private Animator animator;
-    
+
     public bool isDead = false;
 
     public bool getCake = false;
@@ -24,20 +24,32 @@ public class Ant : MonoBehaviour
 
     public Image hpGauge;
 
+    public float RandomMoveTime;
 
+    float directionX = default;
+    float directionY = default;
+
+    //개미 2d lookat
+    private float angle;
+
+    int ranX;
+    int ranY;
+
+    
 
 
 
     public float timeAfterStart = 0f;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.01f;
+        speed = 0.005f;
         animator = GetComponent<Animator>();
         cake = GFunc.GetRootObj("GameObjs").FindChildObj("Cake");
         spawningPool = GFunc.GetRootObj("GameObjs").FindChildObj("SpawningPool");
         hpGauge = gameObject.FindChildObj("HpGauge").GetComponent<Image>();
+        RandomMoveTime = 0f;
 
     }
 
@@ -50,26 +62,48 @@ public class Ant : MonoBehaviour
             Dead();
         } */
         //애니메이션 테스트용
+        RandomMoveTime += Time.deltaTime;
+        //Debug.Log(RandomMoveTime);
+
+
+        if( RandomMoveTime>= 1&&RandomMoveTime<=2)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x+50,transform.position.y+50), speed);
+        }
+        else if(RandomMoveTime>2){
+            RandomMoveTime=0;
+        } 
 
 
 
-        if(isDead ==true)
+
+
+        if (isDead == true)
         {
             animator.SetBool("isDead", true);
         }
 
-        if(getCake== false)
+        if (getCake == false)
         {
-            
-            transform.position = Vector3.MoveTowards(transform.position, cake.transform.position, speed);
+
+            //방향 = 타겟포지션 - 현재포지션
+            Vector3 dir = cake.transform.position - transform.position;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+
+            //2d Vector3.foward?
+            transform.Translate(Vector3.up * speed);
+            //transform.position = Vector3.MoveTowards(transform.position, cake.transform.position, speed);
+
         }
-        
-        else if(getCake == true)
+
+        else if (getCake == true)
         {
             transform.position = Vector3.MoveTowards(transform.position, spawningPool.transform.position, speed);
         }
 
-        hpGauge.fillAmount = (float)currentHp/maxHp;
+        hpGauge.fillAmount = (float)currentHp / maxHp;
 
 
     }
@@ -79,12 +113,14 @@ public class Ant : MonoBehaviour
         isDead = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag == "SpawningPool"&& getCake == true)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "SpawningPool" && getCake == true)
         {
             getCake = false;
             gameObject.FindChildObj("PeiceOfCake").SetActive(false);
-            GameManager.Instance.stolenCake ++;
+            GameManager.Instance.stolenCake++;
         }
     }
+
 }

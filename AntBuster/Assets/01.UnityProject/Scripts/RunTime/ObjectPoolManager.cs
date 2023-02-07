@@ -64,6 +64,7 @@ public class ObjectPoolManager : MonoBehaviour
         {
             poolIndex = 0;
         }
+        //test
         objectPool[poolIndex].GetComponent<Ant>().lv = 24;
         objectPool[poolIndex].GetComponent<Ant>().maxHp = 10;//(int)(4* Mathf.Pow(1.1f, objectPool[poolIndex].GetComponent<Ant>().lv));
         objectPool[poolIndex].GetComponent<Ant>().currentHp =5;//objectPool[poolIndex].GetComponent<Ant>().maxHp;

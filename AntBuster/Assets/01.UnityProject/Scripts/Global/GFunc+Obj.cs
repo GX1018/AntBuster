@@ -12,7 +12,7 @@ public static partial class GFunc
     {
         GameObject searchResult = default;
         GameObject searchTarget = default;
-        for (int i=0; i< targetObj_.transform.childCount; i++)
+        for (int i = 0; i < targetObj_.transform.childCount; i++)
         {
             searchTarget = targetObj_.transform.GetChild(i).gameObject;
             if (searchTarget.name.Equals(objName_))
@@ -27,7 +27,7 @@ public static partial class GFunc
         }       // loop
 
         // 방어로직
-        if(searchResult == null || searchResult == default) { /* Pass */ }
+        if (searchResult == null || searchResult == default) { /* Pass */ }
         else { return searchResult; }
 
         return searchResult;
@@ -41,9 +41,9 @@ public static partial class GFunc
         GameObject[] rootObjs_ = activeScene_.GetRootGameObjects();
 
         GameObject targetObj_ = default;
-        foreach(GameObject rootObj in rootObjs_)
+        foreach (GameObject rootObj in rootObjs_)
         {
-            if(rootObj.name.Equals(objName_))
+            if (rootObj.name.Equals(objName_))
             {
                 targetObj_ = rootObj;
                 return targetObj_;
@@ -74,17 +74,17 @@ public static partial class GFunc
     }       // GetActiveScene()
 
     //! 오브젝트의 로컬 포지션을 변경하는 함수
-    public static void SetLocalPos(this GameObject obj_, 
+    public static void SetLocalPos(this GameObject obj_,
         float x, float y, float z)
     {
         obj_.transform.localPosition = new Vector3(x, y, z);
     }       // SetLocalPos()
 
     //! 오브젝트의 로컬 포지션을 연산하는 함수
-    public static void AddLocalPos(this GameObject obj_, 
+    public static void AddLocalPos(this GameObject obj_,
         float x, float y, float z)
     {
-        obj_.transform.localPosition = 
+        obj_.transform.localPosition =
             obj_.transform.localPosition + new Vector3(x, y, z);
     }       // AddLocalPos()
 
@@ -113,7 +113,7 @@ public static partial class GFunc
     {
         T component_ = obj.GetComponent<T>();
 
-        GFunc.Assert(component_.IsValid<T>() != false, 
+        GFunc.Assert(component_.IsValid<T>() != false,
             string.Format("{0}에서 {1}을(를) 찾을 수 없습니다.",
             obj.name, component_.GetType().Name));
 
@@ -126,4 +126,7 @@ public static partial class GFunc
         GameObject newObj = new GameObject(objName);
         return newObj.AddComponent<T>();
     }       // CreateObj()
+
+
+    
 }
