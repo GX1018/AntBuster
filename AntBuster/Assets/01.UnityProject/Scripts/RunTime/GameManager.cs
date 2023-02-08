@@ -44,12 +44,14 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+
     }
 
     public void GameOver()
     {
         GFunc.LoadScene(GData.SCENE_NAME_GAMEOVER);
     }
+
 
 
 }

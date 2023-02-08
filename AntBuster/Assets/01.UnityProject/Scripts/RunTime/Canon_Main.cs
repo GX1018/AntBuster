@@ -7,6 +7,9 @@ public class Canon_Main : MonoBehaviour
     public bool isTarget;
     private float timeAfterSpawn;
     GameObject bullet;
+    //GameObject buttonScript;
+
+    DefaultTowerButton buttonScript;
 
     GameObject target;
     // Start is called before the first frame update
@@ -14,6 +17,7 @@ public class Canon_Main : MonoBehaviour
     {
         isTarget = false;
         //GameObject.Find("GameObjs");
+        //buttonScript = GameObject.Find("DefalutTowerButton").GetComponent<DefaultTowerButton>();
     }
 
     // Update is called once per frame
@@ -32,6 +36,9 @@ public class Canon_Main : MonoBehaviour
                 timeAfterSpawn = 0;
             }
         }
+
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -74,4 +81,5 @@ public class Canon_Main : MonoBehaviour
             //other.gameObject.SetActive(false); //objectpool 만든다음
         }
     }
+
 }

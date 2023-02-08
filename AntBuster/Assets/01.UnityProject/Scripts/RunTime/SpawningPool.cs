@@ -9,6 +9,7 @@ public class SpawningPool : MonoBehaviour
     void Start()
     {
         //StartCoroutine(StartPooling());
+        
     }
 
     // Update is called once per frame
@@ -22,6 +23,8 @@ public class SpawningPool : MonoBehaviour
         timeAfterStart=0;
         }
 
+
+        
     }
 
 
@@ -36,5 +39,9 @@ public class SpawningPool : MonoBehaviour
     {
         ObjectPoolManager.Instance.antSpawn();
     }
+
+
+    
+
 
 }
