@@ -22,7 +22,6 @@ public class SpawningPool : MonoBehaviour
         timeAfterStart=0;
         }
 
-        Debug.Log(ObjectPoolManager.objectPool[0].activeSelf);
     }
 
 

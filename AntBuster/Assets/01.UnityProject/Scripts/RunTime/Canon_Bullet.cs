@@ -9,7 +9,7 @@ public class Canon_Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.05f;
+        speed = 0.005f;
     }
 
     // Update is called once per frame

@@ -94,30 +94,7 @@ public class Ant : MonoBehaviour
 
         }
         Move();
-        if (getCake == false)
-        {
-            //target= cake;
-          Move();
-            
-            /* //방향 = 타겟포지션 - 현재포지션
-            Vector3 dir = target.transform.position - transform.position;
-
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
-            //2d Vector3.foward?
-            transform.Translate(Vector3.up * speed);
-            //transform.position = Vector3.MoveTowards(transform.position, cake.transform.position, speed); */
-            
-
-        }
-        else if (getCake == true)
-        {
-            //target=spawningPool;
-            Move();
-            
-        } 
-
+        
         hpGauge.fillAmount = (float)currentHp / maxHp;
 
         if(currentHp<=0)
@@ -158,31 +135,31 @@ public class Ant : MonoBehaviour
     {
         while(true)
         {
-            if (getCake == false)
-            {
+            
                 int ranNum = Random.Range(0,15);
-                if(ranNum == 0|| ranNum >=10)
+                if(ranNum == 0|| ranNum >=9)
                 {
-                    target =cake;
+                    if (getCake == false)
+                    {
+                        target =cake;
+                    }
+                    else if(getCake == true)
+                    {
+                        target =  spawningPool;
+                    }
                 }
                 else
                 {
                     target = GameObject.Find($"target{ranNum}");
                 }
                 yield return new WaitForSeconds(0.1f);
-            }
-
-            if (getCake == true)
-            {
-                target=spawningPool;
-                yield return new WaitForSeconds(0.1f);
-            }
         }
+            
     }
 
-    /* void OnEnable(){
-        StartCoroutine(RandomMove());
-    } */
+    void OnEnable(){
+        StartCoroutine(RandomTarget());
+    }
 
 
 
