@@ -14,6 +14,8 @@ public class Ant : MonoBehaviour
     public GameObject cake;
     public GameObject spawningPool;
 
+    public GameObject target;
+
     public float speed;
 
     public int lv = default;
@@ -50,7 +52,10 @@ public class Ant : MonoBehaviour
         spawningPool = GFunc.GetRootObj("GameObjs").FindChildObj("SpawningPool");
         hpGauge = gameObject.FindChildObj("HpGauge").GetComponent<Image>();
         RandomMoveTime = 0f;
-
+        
+        
+        
+        StartCoroutine(RandomTarget());
     }
 
     // Update is called once per frame
@@ -66,46 +71,59 @@ public class Ant : MonoBehaviour
         //Debug.Log(RandomMoveTime);
 
 
-        if( RandomMoveTime>= 1&&RandomMoveTime<=2)
+        /* if( RandomMoveTime>= 1&&RandomMoveTime<=2)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x+50,transform.position.y+50), speed);
         }
         else if(RandomMoveTime>2){
             RandomMoveTime=0;
-        } 
-
-
-
+        }  */
 
 
         if (isDead == true)
         {
+            if(GameObject.Find("Cake").GetComponent<Cake>().pieceOfCake <8)
+            {
+                GameObject.Find("Cake").GetComponent<Cake>().pieceOfCake++;
+            }
             animator.SetBool("isDead", true);
-        }
+            this.gameObject.SetActive(false);
+            isDead = false;
+            getCake = false;
+            gameObject.FindChildObj("PeiceOfCake").SetActive(false);
 
+        }
+        Move();
         if (getCake == false)
         {
-
-            //방향 = 타겟포지션 - 현재포지션
-            Vector3 dir = cake.transform.position - transform.position;
+            //target= cake;
+          Move();
+            
+            /* //방향 = 타겟포지션 - 현재포지션
+            Vector3 dir = target.transform.position - transform.position;
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 
             //2d Vector3.foward?
             transform.Translate(Vector3.up * speed);
-            //transform.position = Vector3.MoveTowards(transform.position, cake.transform.position, speed);
+            //transform.position = Vector3.MoveTowards(transform.position, cake.transform.position, speed); */
+            
 
         }
-
         else if (getCake == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, spawningPool.transform.position, speed);
-        }
+            //target=spawningPool;
+            Move();
+            
+        } 
 
         hpGauge.fillAmount = (float)currentHp / maxHp;
 
-
+        if(currentHp<=0)
+        {
+            Dead();
+        }
     }
 
     public void Dead()
@@ -117,10 +135,55 @@ public class Ant : MonoBehaviour
     {
         if (other.tag == "SpawningPool" && getCake == true)
         {
+            
             getCake = false;
             gameObject.FindChildObj("PeiceOfCake").SetActive(false);
             GameManager.Instance.stolenCake++;
         }
     }
+
+    public void Move()
+    {
+        Vector3 dir = target.transform.position - transform.position;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+
+            //2d Vector3.foward?
+        transform.Translate(Vector3.up * speed);
+            //transform.position = Vector3.MoveTowards(transform.position, cake.transform.position, speed);
+    }
+
+    IEnumerator RandomTarget()
+    {
+        while(true)
+        {
+            if (getCake == false)
+            {
+                int ranNum = Random.Range(0,15);
+                if(ranNum == 0|| ranNum >=10)
+                {
+                    target =cake;
+                }
+                else
+                {
+                    target = GameObject.Find($"target{ranNum}");
+                }
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            if (getCake == true)
+            {
+                target=spawningPool;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+    }
+
+    /* void OnEnable(){
+        StartCoroutine(RandomMove());
+    } */
+
+
 
 }

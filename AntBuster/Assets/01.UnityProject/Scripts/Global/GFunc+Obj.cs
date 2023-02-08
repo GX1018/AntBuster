@@ -128,5 +128,10 @@ public static partial class GFunc
     }       // CreateObj()
 
 
-    
+    public static void LookAt2D(this GameObject gameObject,GameObject target)
+    {
+        Vector3 dir = target.transform.position - gameObject.transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        gameObject.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+    }
 }

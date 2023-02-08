@@ -60,19 +60,34 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void antSpawn()
     {
-        if(poolIndex >= objectPool.Count)
+        //if(objectPool[poolIndex].activeSelf == true)
+        
+        /* if(poolIndex >= objectPool.Count)
         {
             poolIndex = 0;
-        }
+        } */
         //test
-        objectPool[poolIndex].GetComponent<Ant>().lv = 24;
-        objectPool[poolIndex].GetComponent<Ant>().maxHp = 10;//(int)(4* Mathf.Pow(1.1f, objectPool[poolIndex].GetComponent<Ant>().lv));
-        objectPool[poolIndex].GetComponent<Ant>().currentHp =5;//objectPool[poolIndex].GetComponent<Ant>().maxHp;
 
-        
+        /* objectPool[poolIndex].GetComponent<Ant>().lv = 1;
+        objectPool[poolIndex].GetComponent<Ant>().maxHp = (int)(4* Mathf.Pow(1.1f, objectPool[poolIndex].GetComponent<Ant>().lv));
+        objectPool[poolIndex].GetComponent<Ant>().currentHp =objectPool[poolIndex].GetComponent<Ant>().maxHp;
 
         objectPool[poolIndex].SetActive(true);
-        poolIndex ++;
+        poolIndex ++; */
+
+        for(int i = 0; i <objectPool.Count; i++)
+        {
+            if(objectPool[i].activeSelf ==false)
+            {
+                objectPool[i].GetComponent<Ant>().lv = 1;
+                objectPool[i].GetComponent<Ant>().maxHp = (int)(4* Mathf.Pow(1.1f, objectPool[i].GetComponent<Ant>().lv));
+                objectPool[i].GetComponent<Ant>().currentHp =objectPool[i].GetComponent<Ant>().maxHp;
+
+                objectPool[i].transform.position = GFunc.GetRootObj("GameObjs").FindChildObj("SpawningPool").transform.position;
+                objectPool[i].SetActive(true);
+                break;
+            }
+        }
     }
 
 

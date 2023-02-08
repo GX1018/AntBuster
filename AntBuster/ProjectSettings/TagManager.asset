@@ -7,6 +7,7 @@ TagManager:
   - Ant
   - Cake
   - SpawningPool
+  - Bullet
   layers:
   - Default
   - TransparentFX
