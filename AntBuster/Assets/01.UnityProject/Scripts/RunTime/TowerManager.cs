@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class TowerManager : MonoBehaviour
 {
+    int towerInField = 0;
+    string towerName;
+    int price;
+    int speed;
+    int range;
+    int damage;
+
+    public bool isTowerBtnClicked = default;
     private static TowerManager instance;
 
     public static TowerManager Instance
@@ -28,14 +36,12 @@ public class TowerManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        isTowerBtnClicked = false;
+        Debug.Log("test");
+        Debug.Log(isTowerBtnClicked);
+
     }
 
-    int towerInField = 0;
-    string towerName;
-    int price;
-    int speed;
-    int range;
-    int damage;
 
 
 

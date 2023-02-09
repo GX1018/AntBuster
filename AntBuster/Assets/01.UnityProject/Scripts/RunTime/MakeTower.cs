@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MakeTower : MonoBehaviour
 {
-    Vector2 MousePosition;
+    public Vector2 MousePosition;
 
     Camera Camera;
     float mPosX;
@@ -34,7 +34,7 @@ public class MakeTower : MonoBehaviour
         if(mPosY>=-2.9)
         {
         GameObject Canon = Instantiate(Resources.Load<GameObject>("Prefabs/Canon"),new Vector3(mPosX,mPosY,1),transform.rotation);
-        Canon.transform.parent = GameObject.Find("TowerBox").transform;
+        Canon.transform.SetParent(GameObject.Find("TowerBox").transform);
         Canon.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
         Canon.FindChildObj("Canon_Main").SetActive(true);
         }

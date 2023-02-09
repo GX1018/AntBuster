@@ -30,12 +30,17 @@ public class Canon_Main : MonoBehaviour
             if(timeAfterSpawn>1)
             {
                 bullet = Instantiate(Resources.Load<GameObject>("Prefabs/Canon_Bullet"),transform.position,transform.rotation);
-                bullet.transform.parent = GameObject.Find("GameObjs").transform;
+                bullet.transform.SetParent(GameObject.Find("GameObjs").transform);
                 bullet.name = this.transform.parent.name + "_bullet";
                 bullet.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
                 timeAfterSpawn = 0;
             }
         }
+
+        /* if(TowerManager.Instance.isTowerBtnClicked == true)
+        {
+            transform.GetChild(0).GetComponent<GameObject>().SetActive(true);
+        } */
 
 
 

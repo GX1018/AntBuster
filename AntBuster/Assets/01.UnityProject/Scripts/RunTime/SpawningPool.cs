@@ -20,6 +20,7 @@ public class SpawningPool : MonoBehaviour
         {
             
         spawnAnt();
+
         timeAfterStart=0;
         }
 

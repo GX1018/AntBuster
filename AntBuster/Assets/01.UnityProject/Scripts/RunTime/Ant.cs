@@ -38,7 +38,7 @@ public class Ant : MonoBehaviour
     int ranY;
 
     
-
+    float DieAfterTime;
 
 
     public float timeAfterStart = 0f;
@@ -52,7 +52,8 @@ public class Ant : MonoBehaviour
         spawningPool = GFunc.GetRootObj("GameObjs").FindChildObj("SpawningPool");
         hpGauge = gameObject.FindChildObj("HpGauge").GetComponent<Image>();
         RandomMoveTime = 0f;
-        
+        DieAfterTime = 0f;
+        isDead = false;
         
         
         StartCoroutine(RandomTarget());
@@ -67,7 +68,7 @@ public class Ant : MonoBehaviour
             Dead();
         } */
         //애니메이션 테스트용
-        RandomMoveTime += Time.deltaTime;
+        
         //Debug.Log(RandomMoveTime);
 
 
@@ -82,18 +83,27 @@ public class Ant : MonoBehaviour
 
         if (isDead == true)
         {
-            if(GameObject.Find("Cake").GetComponent<Cake>().pieceOfCake <8)
+            DieAfterTime += Time.deltaTime;
+            if(getCake==true&&GameObject.Find("Cake").GetComponent<Cake>().pieceOfCake <8)
             {
                 GameObject.Find("Cake").GetComponent<Cake>().pieceOfCake++;
             }
             animator.SetBool("isDead", true);
-            this.gameObject.SetActive(false);
-            isDead = false;
-            getCake = false;
             gameObject.FindChildObj("PeiceOfCake").SetActive(false);
+            getCake = false;
+            isDead = false;
+            if(DieAfterTime >= 2)
+            {
+                DieAfterTime=0;
+                this.gameObject.SetActive(false);
+            }
 
         }
-        Move();
+        else if(isDead ==false)
+        {
+            animator.SetBool("isDead", false);
+            Move();
+        }
         
         hpGauge.fillAmount = (float)currentHp / maxHp;
 
@@ -160,6 +170,7 @@ public class Ant : MonoBehaviour
     void OnEnable(){
         StartCoroutine(RandomTarget());
     }
+
 
 
 

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if(null == instance)
+            if(instance == null)
             {
                 return null;
             }

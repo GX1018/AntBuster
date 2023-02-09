@@ -5,8 +5,11 @@ using UnityEngine;
 public class ObjectPoolManager : MonoBehaviour
 {
     public static List<GameObject> objectPool;
+    public static List<GameObject> objectPool_Tower;//+
     private int objNum;
+    private int objNum_Tower;//+
     public GameObject objClone;
+    public GameObject objClone_Tower;//+
 
     private int poolIndex =default;
     private static ObjectPoolManager instance;
@@ -43,7 +46,7 @@ public class ObjectPoolManager : MonoBehaviour
         objNum = 6;
         objectPool = new List<GameObject>();
 
-        Debug.Log(transform.Find("SpawningPool"));
+        //Debug.Log(transform.Find("SpawningPool"));
 
         for(int i =0; i<objNum; i++)
         {
@@ -56,25 +59,27 @@ public class ObjectPoolManager : MonoBehaviour
             objClone.SetActive(false);
             objectPool.Add(objClone);
         }
+
+        objNum_Tower=20;
+        objectPool_Tower = new List<GameObject>();
+
+        for(int i =0; i<objNum_Tower; i++)
+        {
+            objClone_Tower = Instantiate(Resources.Load<GameObject>("Prefabs/Canon"));
+            objClone_Tower.transform.parent = GFunc.GetRootObj("GameObjs").transform;
+            
+            objClone_Tower.GetComponent<RectTransform>().localScale= new Vector2(1,1);
+            objClone_Tower.transform.position = GFunc.GetRootObj("GameObjs").FindChildObj("TowerPool").transform.position;
+            objClone_Tower.name = "Canon"+$"{i}";
+
+            objClone_Tower.SetActive(false);
+            objectPool_Tower.Add(objClone_Tower);
+        }
+        
     }
 
     public void antSpawn()
     {
-        //if(objectPool[poolIndex].activeSelf == true)
-        
-        /* if(poolIndex >= objectPool.Count)
-        {
-            poolIndex = 0;
-        } */
-        //test
-
-        /* objectPool[poolIndex].GetComponent<Ant>().lv = 1;
-        objectPool[poolIndex].GetComponent<Ant>().maxHp = (int)(4* Mathf.Pow(1.1f, objectPool[poolIndex].GetComponent<Ant>().lv));
-        objectPool[poolIndex].GetComponent<Ant>().currentHp =objectPool[poolIndex].GetComponent<Ant>().maxHp;
-
-        objectPool[poolIndex].SetActive(true);
-        poolIndex ++; */
-
         for(int i = 0; i <objectPool.Count; i++)
         {
             if(objectPool[i].activeSelf ==false)
@@ -85,6 +90,19 @@ public class ObjectPoolManager : MonoBehaviour
 
                 objectPool[i].transform.position = GFunc.GetRootObj("GameObjs").FindChildObj("SpawningPool").transform.position;
                 objectPool[i].SetActive(true);
+                
+                break;
+            }
+        }
+    }
+
+    public void TowerSpawn()
+    {
+        for(int i = 0; i <objectPool_Tower.Count; i++)
+        {
+            if(objectPool_Tower[i].activeSelf ==false)
+            {
+                objectPool_Tower[i].SetActive(true);
                 break;
             }
         }

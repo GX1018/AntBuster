@@ -272,6 +272,7 @@ MonoBehaviour:
   getCake: 0
   cake: {fileID: 0}
   spawningPool: {fileID: 0}
+  target: {fileID: 0}
   speed: 0
   lv: 0
   maxHp: 0
